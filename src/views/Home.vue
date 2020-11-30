@@ -1,17 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div id="home">
+    <VSpacer height="5ex" />
+    <SearchPlayer />
+    <VSpacer height="8ex" />
+    <SearchServer />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import Options from "vue-class-component";
+import SearchPlayer from "@/components/viewCompontents/Home/SearchPlayer.vue";
+import VSpacer from "@/components/viewCompontents/Home/VSpacer.vue";
+import SearchServer from "@/components/viewCompontents/Home/SearchServer.vue";
 
-@Component({
+import Vue from "vue";
+
+@Options({
   components: {
-    HelloWorld
+    SearchPlayer,
+    VSpacer,
+    SearchServer
   }
 })
 export default class Home extends Vue {}
