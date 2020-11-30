@@ -2,7 +2,7 @@
   <div id="searchPlayer">
     <div class="content">
       <div class="flex-content">
-        <Icon />
+        <Earth size="120" />
       </div>
       <div class="flex-content">
         <h1>Enter your server name:</h1>
@@ -20,10 +20,12 @@ import Options from "vue-class-component";
 import Vue from "vue";
 
 import Icon from "./Icon.vue";
+import Earth from "vue-material-design-icons/Earth.vue";
 
 @Options({
   components: {
-    Icon
+    Icon,
+    Earth
   }
 })
 export default class SearchServer extends Vue {

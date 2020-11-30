@@ -2,7 +2,7 @@
   <div id="searchPlayer">
     <div class="content">
       <div class="flex-content">
-        <Icon />
+        <Account size="120" />
       </div>
       <div class="flex-content">
         <h1>Enter your player name:</h1>
@@ -20,10 +20,12 @@ import Options from "vue-class-component";
 import Vue from "vue";
 
 import Icon from "./Icon.vue";
+import Account from "vue-material-design-icons/Account.vue";
 
 @Options({
   components: {
-    Icon
+    Icon,
+    Account
   }
 })
 export default class SearchPlayer extends Vue {
