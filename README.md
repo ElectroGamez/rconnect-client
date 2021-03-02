@@ -1,4 +1,4 @@
-# rconnect
+# vue3-typescript-dokku
 
 ## Project setup
 ```
