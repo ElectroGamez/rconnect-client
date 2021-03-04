@@ -13,7 +13,7 @@ app
   .mount("#app");
 
 app.config.globalProperties.$axios = axios.create({
-  baseURL: process.env.VUE_BACKEND_BASEURL ?? "http://localhost:5000/"
+  baseURL: process.env.VUE_APP_BACKEND_URL ?? "http://localhost:5000/"
 });
 
 declare module "@vue/runtime-core" {
