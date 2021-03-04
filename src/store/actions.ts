@@ -47,7 +47,6 @@ export const actions: ActionTree<State, State> & Actions = {
     return new Promise(resolve => {
       setTimeout(() => {
         // TODO: create actual login function
-        console.log("Logging in user: ", payload);
         const user: IUser = { id: "tmp-id", name: "tmp-username" };
         commit(MutationTypes.USER_SET, user);
         resolve(true);
