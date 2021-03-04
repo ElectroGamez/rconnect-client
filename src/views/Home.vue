@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <ErrorList />
+    <PlayerList />
+
+    <div>
+      <!-- Dev stuff -->
+
+      <button @click="addError">Add Error</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+
+import PlayerList from "@/components/Home/PlayerList.vue";
+import ErrorList from "@/components/Error/ErrorList.vue";
+import { ActionTypes } from "@/store/actions";
 
 @Options({
   components: {
-    HelloWorld
+    PlayerList,
+    ErrorList
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  addError() {
+    this.$store.dispatch(ActionTypes.ERROR_ADD, {
+      type: "warning",
+      title: "Connection Error! Big boi error here!",
+      text: "oopsie woobsie, we did a fooky wooky UwU",
+      fixed: false
+    });
+  }
+}
 </script>
+
+<style scoped>
+.error-list {
+  position: absolute;
+  top: 0;
+  right: 4px;
+}
+</style>
