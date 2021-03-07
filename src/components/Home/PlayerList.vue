@@ -25,7 +25,6 @@ import IconHeader from "@/components/IconHeader.vue";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import { IPlayer } from "@/store/entities/Player";
 import { ActionTypes } from "@/store/actions";
-import { AxiosError } from "node_modules/axios";
 
 interface PlayTimeList {
   data: number;
@@ -58,24 +57,30 @@ export default class PlayerList extends Vue {
     return process.env.VUE_APP_SUB_TITLE;
   }
 
-  async mounted() {
-    const result = await this.$axios
-      .get("player/top/5")
-      .catch((axiosError: AxiosError) => {
-        this.$store.dispatch(ActionTypes.ERROR_ADD, {
-          type: "error",
-          title: axiosError.name,
-          text: axiosError.message,
-          fixed: true
-        });
-      });
-    if (result) this.playTimeList = result.data;
-  }
-
   get players() {
     return this.playTimeList.map(object => {
       return object?.linkedEntry?.owner;
     });
+  }
+
+  async getList(): Promise<PlayTimeList[]> {
+    const result = await fetch(`${this.$baseURL}player/top/5`);
+
+    if (result.ok) {
+      return await result.json();
+    } else {
+      this.$store.dispatch(ActionTypes.ERROR_ADD, {
+        type: "error",
+        title: "Connection Error",
+        text: result.statusText,
+        fixed: true
+      });
+      return [];
+    }
+  }
+
+  async mounted() {
+    this.playTimeList = await this.getList();
   }
 }
 </script>
