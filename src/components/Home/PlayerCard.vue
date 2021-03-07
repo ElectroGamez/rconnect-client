@@ -26,7 +26,7 @@ import Loading from "@/components/Loading.vue";
 
 @Options({
   props: {
-    player: {} as IPlayer,
+    player: {},
     header: ""
   },
   components: {
@@ -45,16 +45,6 @@ export default class PlayerCard extends Vue {
 
   get headerText() {
     return this.header ?? "";
-  }
-
-  async mounted() {
-    if (this.player && !this.player.username) {
-      const response = await this.$axios.get(
-        `player/id/${this.player.id}/username`
-      );
-
-      this.player.username = response?.data.username ?? undefined;
-    }
   }
 }
 </script>
